@@ -74,17 +74,6 @@ export default {
         // Grab the JSON from the response
         const oauth = await oauth_response.json()
 
-        // Looks like:
-        // {
-        //   access_token:
-        //     'LONG STRING',
-        //   expires_in: 3600,
-        //   token_type: 'Bearer',
-        // }
-
-        /**
-         * Helper methods for getting things to/from base64url and array buffers
-         */
         function objectToBase64url(payload) {
             return arrayBufferToBase64Url(
                 new TextEncoder().encode(JSON.stringify(payload)),
@@ -112,9 +101,6 @@ export default {
             const customCacheKey = `${newUrl.hostname}${newUrl.pathname}`
             const queryCacheKey = `${newUrl.hostname}${newUrl.pathname}${newUrl.search}`
 
-            // const ifRange = request.headers.has('Range')
-            // const range = ifRange ? request.headers.get('Range') : ''
-
             // Here we set all variables needed to manipulate Cloudflare's cache using the fetch API in the cf object, we'll be passing these variables in the objects down
             const cacheAssets = [
                 { asset: 'video', key: customCacheKey, regex: /(.*\/Video)|(.*\.(m4s|mp4|ts|avi|mpeg|mpg|mkv|bin|webm|vob|flv|m2ts|mts|3gp|m4v|wmv|qt))/, info: 0, ok: 31556952, redirects: 30, clientError: 10, serverError: 0, cacheTag: 'signed-video' },
@@ -130,10 +116,6 @@ export default {
 
             const newResponse = await fetch(newRequest,
                 {
-                    // headers:{
-                    //     Authorization: `${oauth.token_type} ${oauth.access_token}`,
-                    //     Range: range
-                    // },
                     cf:
                     {
                         cacheKey: cache.key,
