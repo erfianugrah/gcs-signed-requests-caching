@@ -145,6 +145,10 @@ export default {
                 cacheControl = prop && `public, max-age=${ matchedAsset[prop] }`;
             }
 
+            if (response.status === 404) {
+                return new Response("No luck, try again", { status: 404})
+            }
+            
             // Set the cache-control header on the response
             response.headers.set('Cache-Control', cacheControl);
 
