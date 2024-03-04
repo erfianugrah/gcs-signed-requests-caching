@@ -44,7 +44,7 @@ Click close
 
 <u>Step 3 - Convert the P12 key to an RSA Private key</u>
 
-Thanks to Google for providing a P12 to PEM conversion tool: https://github.com/google/google-p12-pem
+Thanks to Google for providing a P12 to PEM conversion [tool](https://github.com/google/google-p12-pem)
 
 Install the package
 
@@ -60,7 +60,7 @@ And convert
 
 Note: there is probably a better way to run
 
-<u>Step 4 - Convert the RSA Private key to JWK: https://github.com/dannycoates/pem-jwk</u>
+<u>Step 4 - [Convert the RSA Private key to JWK](https://github.com/dannycoates/pem-jwk)</u>
 
 Install the package
 
@@ -73,3 +73,4 @@ And convert
 ```
  node_modules/pem-jwk/bin/pem-jwk.js PEM/FROM/STEP3/private.pem > private.json
 ```
+<u>[Step 5 - Use Wrangler Secret to put the JWK, service email and bucket so that the Worker can reference it securely](ttps://developers.cloudflare.com/workers/wrangler/commands/#secret) </u>
